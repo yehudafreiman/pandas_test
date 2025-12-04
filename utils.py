@@ -34,7 +34,7 @@ def create_column(df, column_name):
         df["high_value_order"] = [True if x > average_total_amount else False for x in df["total_amount"]]
     if column_name == "rating_average":
         df["rating_average"] = df.groupby("country")["rating"].transform('mean')
-    else:
+    if column_name == "delivery_status":
         df["delivery_status"] = ["delayed" if x > 7 else "on time" for x in df["shipping_days"]]
     return df
 
@@ -45,14 +45,6 @@ def sort_values(df, column_name):
 def filtering_by_condition(df, column1_name, column2_name):
     df = df[(df[column1_name] > 1000) & (df[column2_name] > 4.5)]
     return df
-
-
-
-
-
-
-
-
 
 
 
