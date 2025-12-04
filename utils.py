@@ -15,14 +15,14 @@ def cleaning_data(df, column_name):
         df[column_name] = df[column_name].str.replace('<b>', '')
         df[column_name] = df[column_name].str.replace('</b>', ' ')
         df[column_name] = df[column_name].str.replace('<br>', '')
-    else:
+    if column_name == "coupon_used":
         df[column_name] = df[column_name].replace({'': 'no coupon'})
     return df
 
 def converse_data_type(df, column_name):
     if column_name == "total_amount":
         df["total_amount"] = df["total_amount"].astype(float)
-    else:
+    if column_name == "order_date":
         df["order_date"] = pd.to_datetime(df["order_date"])
     return df
 
